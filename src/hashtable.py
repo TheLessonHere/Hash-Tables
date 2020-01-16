@@ -32,7 +32,10 @@ class HashTable:
 
         OPTIONAL STRETCH: Research and implement DJB2
         '''
-        pass
+        hash = 5381
+        for letter in key:
+            hash = (( hash << 5) + hash) + ord(letter)
+        return hash % self.capacity
 
 
     def _hash_mod(self, key):
@@ -197,5 +200,10 @@ if __name__ == "__main__":
     print(ht.retrieve("line_1"))
     print(ht.retrieve("line_2"))
     print(ht.retrieve("line_3"))
+
+    # Test djb2
+    print(ht._hash_djb2("line_1"))
+    print(ht._hash_djb2("line_2"))
+    print(ht._hash_djb2("line_3"))
 
     print("")
